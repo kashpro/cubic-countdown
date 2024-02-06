@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Clock</title>
+	<!-- Link to CSS file -->
+	<link rel="stylesheet" href="clock.css">
+	<!-- Link to JS file -->
+	<script src="../../CubicCountdown/js/CubicCountdown.js"></script>
+	<style>
+		/* Some page styles*/
+		body {
+			background-color: #2e2e2e;
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			width: 100%;
+		}
+		p {
+			font-size: 40px;
+			font-family: sans-serif;
+			color: #eee;
+		}
+	</style>
+</head>
+<body>
+	
+	<p>Your time is</p>
+	<!-- Container for countdown -->
+	<div id="cubic-container"></div>
+	
+	<script>
+		/*countdown initialization*/
+		var myCount = new Cubic({
+			element: "#cubic-container",
+			toTime: "2000-01-01T00:00:00", //set date in past, time 00:00:00, without timezone
+			showDays: false, //hide "days" cube
+		});
+
+	</script>
+</body>
+</html>

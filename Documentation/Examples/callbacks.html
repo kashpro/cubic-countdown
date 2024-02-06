@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Callbacks</title>
+	<!-- Link to CSS file -->
+	<link rel="stylesheet" href="callbacks.css">
+	<!-- Link to JS file -->
+	<script src="../../CubicCountdown/js/CubicCountdown.js"></script>
+	<style>
+		/* Some page styles*/
+		body {
+			background-color: #2e2e2e;
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			width: 100%;
+		}
+		p {
+			color: #eee;
+			font-size: 18px;
+			font-family: sans-serif;
+			margin-top: 50px;
+		}
+	</style>
+</head>
+<body>
+	<p>onFinish callback demo. When time becomes equal to zero, the countdown will restart with 5 sec countdown.</p>
+	<!-- Container for 1st countdown -->
+	<div id="cubic-container1"></div>
+	<p>onTick callback demo. Random color sets on the faces of the cubes every tick.</p>
+	<!-- Container for 2nd countdown -->
+	<div id="cubic-container2"></div>
+	
+	<script>
+		/*1st countdown initialization*/
+		var myCount = new Cubic({
+			element: "#cubic-container1",
+			toTime: Date.now() + 5 * 1000, //5 sec countdown since page loaded
+			cssClass: "zzcubic1",
+			onFinish: function() {
+				myCount.change({
+					toTime: Date.now() + 5 * 1000, //set 5 sec countdown again via change() method
+				});
+			}
+		});
+
+		/*2nd countdown initialization*/
+		var myCount2 = new Cubic({
+			element: "#cubic-container2",
+			toTime: Date.now() + 60 * 60 * 1000,
+			cssClass: "zzcubic2",
+			onTick: function() {
+				//This is BAD js-code! Only for quick demonstration!
+				var faces = document.querySelectorAll(".zzcubic2__face"); //find all faces
+				var r = Math.floor(Math.random() * 255); //get 3 random values (0-255)
+				var g = Math.floor(Math.random() * 255);
+				var b = Math.floor(Math.random() * 255);
+				var rndColor = "rgb(" + r + ", " + g + ", " + b + ")"; //combine random values to css syntax
+				for (var i = 0; i < faces.length; i++) { //for all faces
+					faces[i].style.transition = "background-color 0.5s ease"; //set transition 0.5s for smooth animation
+					faces[i].style.backgroundColor = rndColor; //apply random color to all faces
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+.zzcubic {
+	font-family: "Bebas Neue", sans-serif;
+	font-weight: 700;
+	color: #575757;
+}
+.zzcubic__face {
+	background-color: #f1f1f1;
+}
+.zzcubic__dot {
+	background-color: #f1f1f1;
+}
+.zzcubic__label {
+	font-family: inherit;
+	font-weight: inherit;
+	letter-spacing: 5px;
+	color: #e0e0e0;
+	text-transform: lowercase;
+}

@@ -1,0 +1,103 @@
+/*Feel free to add or remove any CSS-styles*/
+/*"zzcubic" prefix specified in "cssClass" parameter*/
+/*-------------------------*/
+/*   Gloabl timer styles   */
+/*-------------------------*/
+.zzcubic {
+  /*Change font if necessary*/
+  font-family: "Bebas Neue", sans-serif;
+
+  /*Font weight*/
+  font-weight: 700;
+
+  /*Text color*/
+  color: #575757;
+}
+
+/*-------------------------*/
+/*    Cube faces styles    */
+/*-------------------------*/
+.zzcubic__face {
+  /*Faces text shadow*/
+  /*text-shadow: 0 0 10px rgba(50,50,50,0.7);*/
+
+  /*Faces border via box-shadow*/
+  /*box-shadow: inset 0px 0px 0px 2px #000000;*/
+
+  /*Faces background via solid color*/
+  background-color: #e0e0e0;
+
+  /*Faces background via gradient*/
+  /*background-image: linear-gradient(to bottom right, #f1f1f1, #c0c0c0);*/
+
+  /*Faces background via image*/
+  /*background-image: url("some-path/some-image.jpg");*/
+
+  /*Faces background-image settings*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/*-------------------------*/
+/*    Colon dots styles    */
+/*-------------------------*/
+.zzcubic__dot {
+  /*Dots border via box-shadow*/
+  /*box-shadow: inset 0px 0px 0px 2px #000000;*/
+
+  /*Dots background via solid color*/
+  /*background-color: #e0e0e0;*/
+
+  /*Dots background via gradient*/
+  background-image: linear-gradient(to bottom right, #f1f1f1, #c0c0c0);
+
+  /*Dots background via image*/
+  /*background-image: url("some-path/some-image.jpg");*/
+
+  /*Dots background-image settings*/
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  /*Dots border radius*/
+  /* border-radius: 50%; */
+}
+
+/*-------------------------*/
+/*     Cube text styles    */
+/*-------------------------*/
+.zzcubic__face span {
+  /*Text offset relative to the center of the cube*/
+  transform: translate(0px, 0px);
+}
+
+/*-------------------------*/
+/*    Cube labels styles   */
+/*-------------------------*/
+.zzcubic__label {
+  /*Change font for labels if necessary*/
+  font-family: inherit;
+
+  /*Change font weight for labels if necessary*/
+  font-weight: inherit;
+
+  /*Labels text spacing*/
+  letter-spacing: 5px;
+
+  /*Labels text color*/
+  color: #e0e0e0;
+
+  /*Labels text transform: uppercase, lowercase, capitalize*/
+  text-transform: lowercase;
+}
+
+/*Responsive styles example*/
+@media screen and (max-width: 768px) {
+  .zzcubic {
+    /* font-weight: 400; */
+  }
+  .zzcubic__label {
+    /* letter-spacing: 3px; */
+  }
+}

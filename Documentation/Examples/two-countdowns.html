@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Two Countdowns</title>
+	<!-- Link to CSS file -->
+	<link rel="stylesheet" href="two-countdowns.css">
+	<!-- Link to JS file -->
+	<script src="../../CubicCountdown/js/CubicCountdown.js"></script>
+	<style>
+		/* Some page styles*/
+		body {
+			background-color: #2e2e2e;
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+			flex-direction: column;
+			width: 100%;
+		}
+	</style>
+</head>
+<body>
+	<!-- Container for 1st countdown -->
+	<div id="cubic-container1"></div>
+	<!-- Container for 2nd countdown -->
+	<div id="cubic-container2"></div>
+	
+	<script>
+		/*1st countdown initialization*/
+		var myCount1 = new Cubic({
+			element: "#cubic-container1",
+			toTime: Date.now() + 60 * 60 * 1000,
+			cssClass: "zzcubic1", //CSS-prefix for 1st countdown
+		});
+
+		/*2nd countdown initialization*/
+		var myCount2 = new Cubic({
+			element: "#cubic-container2",
+			toTime: Date.now() - 60 * 60 * 1000,
+			cssClass: "zzcubic2", //CSS-prefix for 2nd countdown
+		});
+	</script>
+</body>
+</html>

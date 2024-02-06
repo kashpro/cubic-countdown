@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script src="../CubicCountdown/js/CubicCountdown.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto+Condensed|Roboto:400,700" rel="stylesheet">
+	<title>Cubic Countdown Documentation</title>
+	<style>
+		#cubic-container {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#cubic-container .zzcubic {
+			font-family: "Roboto Condensed", sans-serif;	
+			font-weight: 400;
+			color: #ddd;
+		}
+		#cubic-container .zzcubic__face {
+			background-image: linear-gradient(to bottom right, #6e6e6e, #4c4c4c);
+		}
+		#cubic-container .zzcubic__face span {
+			/* transform: translateY(-3px); */
+		}
+		#cubic-container .zzcubic__dot {
+			background-color: #6e6e6e;
+		}
+		#cubic-container .zzcubic__label {
+			font-family: inherit;
+			color: #6e6e6e;
+			text-transform: uppercase;
+		}
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: "Roboto", sans-serif;
+			font-size: 16px;
+			line-height: 1;
+			background-color: #eee;
+			line-height: 1.2;
+			padding-bottom: 100px;
+		}
+		ul {
+			margin: 0;
+		}
+		p {
+			margin-bottom: 0;
+			margin-top: 10px;
+		}
+		img {
+			margin-top: 10px;
+		}
+		a {
+			text-decoration: none;
+			color: rgb(0, 35, 255);
+		}
+		a:hover {
+			color: rgb(0, 0, 140);
+		}
+		h1, h2, h3, h4, h5, h6 {
+			margin: 0;
+			padding: 0;
+			color: rgb(35, 35, 120);
+		}
+		.container {
+			max-width: 720px;
+			margin: 0 auto;
+			padding: 0 10px;
+		}
+		.green {
+			color: green;
+		}
+		.yellow {
+			color: orange;
+		}
+		.red {
+			color: red;
+		}
+		.comp__text span {
+			font-weight: 700;
+		}
+		.code {
+			background-color: #333;
+			white-space: pre;
+			color: white;
+			font-family: "Inconsolata", monospace;
+			border-radius: 4px;
+			margin: 5px 0;
+			padding: 10px;
+			margin-bottom: 15px;
+		}
+		.tg {
+			color: #f6d;
+		}
+		.tx {
+			color: #fd6;
+		}
+		.tr {
+			color: #6df;
+		}
+		.nm {
+			color: #9e80ce;
+		}
+		.cm {
+			color: #666;
+		}
+		.header {
+			height: 400px;
+			background-color: #ccc;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.header__head {
+			font-size: 60px;
+			font-weight: 700;
+			text-align: center;
+			color: #6e6e6e;
+			margin-bottom: 40px;
+		}
+		section {
+			padding: 20px 0;
+		}
+		h2 {
+			margin-bottom: 10px;
+		}
+		.options__option {
+			font-size: 20px;
+			font-weight: 700;
+			color: black;
+			margin-bottom: 10px;
+			margin-top: 20px;
+		}
+		.methods__method {
+			font-size: 20px;
+			font-weight: 700;
+			color: black;
+			margin-bottom: 10px;
+			margin-top: 20px;
+		}
+		.warn {
+			color: red;
+		}
+		.header__list	{
+			list-style: none;
+			display: flex;
+			margin: 0;
+			padding: 0;
+			margin-top: 40px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		.header__item {
+			margin: 0 7px;
+		}
+		.header__link {
+			font-size: 16px;
+			color: #2e2e2e;
+		}
+		.options__list {
+			list-style: none;
+			display: flex;
+			margin: 0;
+			padding: 0;
+			margin-bottom: 20px;
+			justify-content: center;
+			flex-wrap: wrap;
+		}
+		.options__item {
+			margin: 0 10px;
+			margin-bottom: 10px;
+		}
+		img {
+			max-width: 100%;
+			height: auto;
+		}
+		.about__text {
+			font-style: italic;
+			color: #666;
+		}
+		@media (max-width: 625px) {
+			.code {
+				font-size: 8px;
+				padding: 5px;
+			}
+			body {
+				font-size: 10px;
+			}
+			.header__head {
+				font-size: 30px;
+			}
+			.header__item {
+				margin-bottom: 15px;
+			}
+			.methods__method, .options__option {
+				font-size: 12px;
+			}
+		}
+	</style>
+</head>
+<body>
+	<header class="header">
+		<div class="container">
+			<h1 class="header__head">Cubic Countdown</h1>
+			<div id="cubic-container"></div>
+			<ul class="header__list">
+				<!-- <li class="header__item"><a href="#features" class="header__link">Features</a></li> -->
+				<li class="header__item"><a href="#comp" class="header__link">Browser support</a></li>
+				<li class="header__item"><a href="#usage" class="header__link">Usage</a></li>
+				<li class="header__item"><a href="#options" class="header__link">Options</a></li>
+				<li class="header__item"><a href="#methods" class="header__link">Methods</a></li>
+				<li class="header__item"><a href="#css" class="header__link">Styling</a></li>
+			</ul>
+		</div>
+	</header>
+	
+	<section class="about">
+		<div class="container">
+			<p class="about__text">Docs version: 2024-06-02</p>
+		</div>
+	</section>
+
+	<section class="comp" id="comp">
+		<div class="container">
+			<h2>Browser support</h2>
+			<p class="comp__text">Chrome, Firefox, Safari, Opera, Edge: <span class="green">full support</span></p>
+			<p class="comp__text">IE 11-: <span class="red">not supported</span></p>
+		</div>
+	</section>
+
+	<section class="usage" id="usage">
+		<div class="container">
+			<h2 class="usage__head">Usage</h2>
+			<p class="usage__text">1. Copy <b>CubicCountdown.js</b> and <b>CubicCountdown.css</b> files from "CubicCountdown" folder to your project.</p>
+			<p class="usage__text">2. Add links in the &lt;head&gt; section in your HTML file:</p>
+<pre class="code">&lt;<span class="tg">html</span>&gt;
+    &lt;<span class="tg">head</span>&gt;
+        ...
+        &lt;<span class="tg">link</span> <span class="tr">rel=</span><span class="tx">"stylesheet"</span> <span class="tr">href=</span><span class="tx">"css/CubicCountdown.css"</span>&gt;
+        &lt;<span class="tg">script</span> <span class="tr">src=</span><span class="tx">"js/CubicCountdown.js"</span>>&lt;/<span class="tg">script</span>&gt;
+        ...
+    &lt;/<span class="tg">head</span>&gt;
+    &lt;<span class="tg">body</span>&gt;
+        ...
+    &lt;/<span class="tg">body</span>&gt;
+&lt;/<span class="tg">html</span>&gt;</pre>
+			<p class="usage__text">3. Place an empty &lt;div&gt; somwhere in the &lt;body&gt; section:</p>
+<pre class="code">&lt;<span class="tg">html</span>&gt;
+    &lt;<span class="tg">head</span>&gt;
+        ...
+        &lt;<span class="tg">link</span> <span class="tr">rel=</span><span class="tx">"stylesheet"</span> <span class="tr">href=</span><span class="tx">"css/CubicCountdown.css"</span>&gt;
+        &lt;<span class="tg">script</span> <span class="tr">src=</span><span class="tx">"js/CubicCountdown.js"</span>>&lt;/<span class="tg">script</span>&gt;
+        ...
+    &lt;/<span class="tg">head</span>&gt;
+    &lt;<span class="tg">body</span>&gt;
+        ...
+        &lt;<span class="tg">div</span><span class="tr"> id=</span><span class="tx">"cubic-container"</span>&gt;&lt;/<span class="tg">div</span>&gt;
+        ...
+    &lt;/<span class="tg">body</span>&gt;
+&lt;/<span class="tg">html</span>&gt;</pre>
+			<p class="usage__text">4. Initialize your countdown in your script file or an inline &lt;script&gt; tag:</p>
+<pre class="code">&lt;<span class="tg">html</span>&gt;
+    &lt;<span class="tg">head</span>&gt;
+        ...
+        &lt;<span class="tg">link</span> <span class="tr">rel=</span><span class="tx">"stylesheet"</span> <span class="tr">href=</span><span class="tx">"css/CubicCountdown.css"</span>&gt;
+        &lt;<span class="tg">script</span> <span class="tr">src=</span><span class="tx">"js/CubicCountdown.js"</span>>&lt;/<span class="tg">script</span>&gt;
+        ...
+    &lt;/<span class="tg">head</span>&gt;
+    &lt;<span class="tg">body</span>&gt;
+        ...
+        &lt;<span class="tg">div</span><span class="tr"> id=</span><span class="tx">"cubic-container"</span>&gt;&lt;/<span class="tg">div</span>&gt;
+        ...
+        &lt;<span class="tg">script</span>&gt;
+          <span class="tr">var</span> myCount = <span class="tg">new</span> Cubic({
+              element: <span class="tx">"#cubic-container"</span>,
+              <i class="cm">...more options...</i>
+          });
+        &lt;/<span class="tg">script</span>&gt;
+    &lt;/<span class="tg">body</span>&gt;
+&lt;/<span class="tg">html</span>&gt;</pre>
+		</div>
+	</section>
+
+	<section class="options" id="options">
+		<div class="container">
+			<h2 class="options__head">Options</h2>
+			<ul class="options__list">
+				<li class="options__item"><a href="#element" class="options__link">element</a></li>
+				<li class="options__item"><a href="#totime" class="options__link">toTime</a></li>
+				<li class="options__item"><a href="#cssclass" class="options__link">cssClass</a></li>
+				<li class="options__item"><a href="#cubesize" class="options__link">cubeSize</a></li>
+				<li class="options__item"><a href="#cubesidemargin" class="options__link">cubeSideMargin</a></li>
+				<li class="options__item"><a href="#cubetextsize" class="options__link">cubeTextSize</a></li>
+				<li class="options__item"><a href="#colonsize" class="options__link">colonSize</a></li>
+				<li class="options__item"><a href="#labeltextsize" class="options__link">labelTextSize</a></li>
+				<li class="options__item"><a href="#labelontop" class="options__link">labelOnTop</a></li>
+				<li class="options__item"><a href="#labeloffset" class="options__link">labelOffset</a></li>
+				<li class="options__item"><a href="#labeltext" class="options__link">"labelText"</a></li>
+				<li class="options__item"><a href="#showcube" class="options__link">"showCube"</a></li>
+				<li class="options__item"><a href="#leadingzero" class="options__link">leadingZero</a></li>
+				<li class="options__item"><a href="#shadowcolor" class="options__link">shadowColor</a></li>
+				<li class="options__item"><a href="#shadowintensity" class="options__link">shadowIntensity</a></li>
+				<li class="options__item"><a href="#animationpreset" class="options__link">animationPreset</a></li>
+				<li class="options__item"><a href="#animationdelay" class="options__link">animationDelay</a></li>
+				<li class="options__item"><a href="#continuousanimation" class="options__link">continuousAnimation</a></li>
+				<li class="options__item"><a href="#colonanimation" class="options__link">colonAnimation</a></li>
+				<li class="options__item"><a href="#autostart" class="options__link">autoStart</a></li>
+				<li class="options__item"><a href="#onfinish" class="options__link">onFinish</a></li>
+				<li class="options__item"><a href="#ontick" class="options__link">onTick</a></li>
+				<li class="options__item"><a href="#mobilefirst" class="options__link">mobileFirst</a></li>
+				<li class="options__item"><a href="#responsive" class="options__link">responsive</a></li>
+			</ul>
+			<p class="options__text">All options, passed to Cubic() function must be wrapped with { }.</p>
+			<p class="options__text">Only "element" option is required. Minimum initialization:</p>
+<pre class="code" id="init"><span class="tr">var</span> myCount = <span class="tg">new</span> Cubic({
+    element: <span class="tx">"#cubic-container"</span>,
+});</pre>
+			<p class="options__text">Countdown initialization with full list of options (example):</p>
+<pre class="code"><span class="tr">var</span> myCount = <span class="tg">new</span> Cubic({
+    element: <span class="tx">"#cubic-container"</span>,
+    toTime: <span class="tx">"2025-01-01T00:00:00+08:00"</span>,
+    cssClass: <span class="tx">"zzcubic"</span>,
+    cubeSize: <span class="nm">160</span>,
+    cubeSideMargin: <span class="nm">20</span>,
+    cubeTextSize: <span class="nm">100</span>,
+    colonSize: <span class="nm">17</span>,
+    labelTextSize: <span class="nm">20</span>,
+    labelOnTop: <span class="nm">false</span>,
+    labelOffset: <span class="nm">40</span>,
+    daysLabel: <span class="tx">"days"</span>,
+    hoursLabel: <span class="tx">"hours"</span>,
+    minutesLabel: <span class="tx">"minutes"</span>,
+    secondsLabel: <span class="tx">"seconds"</span>,
+    showDays: <span class="nm">true</span>,
+    showHours: <span class="nm">true</span>,
+    showMinutes: <span class="nm">true</span>,
+    showSeconds: <span class="nm">true</span>,
+    leadingZero: <span class="nm">true</span>,
+    shadowColor: <span class="tx">"#414141"</span>,
+    shadowIntensity: <span class="nm">100</span>,
+    animationPreset: <span class="nm">0</span>,
+    animationDelay: <span class="nm">100</span>,
+    continuousAnimation: <span class="nm">false</span>,
+    colonAnimation: <span class="nm">true</span>,
+    autoStart: <span class="nm">true</span>,
+    onFinish: <span class="tr">function</span>(){
+        <span class="tr">alert</span>(<span class="tx">"Happy New Year!"</span>);
+    },
+    onTick: <span class="tr">function</span>(){
+        <span class="tr">console.log</span>(<span class="tx">"tick"</span>);
+    },
+    mobileFirst: <span class="nm">false</span>,
+    responsive: [
+        {
+            breakpoint: 1200,
+            options: {
+                <i class="cm">...options...</i>
+            },
+        },
+        {
+            breakpoint: 768,
+            options: {
+                <i class="cm">...options...</i>
+            },
+        },
+    ],
+});</pre>
+			<h3 class="options__option" id="element">element</h3>
+<pre class="code">element: <span class="tx">"#cubic-container"</span>,</pre>
+			<p class="options__text">Defines a DOM-element, where the countdown will be mounted. Value must be a valid CSS-selector (<b>#selector</b> - for id, <b>.selector</b> - for class). Required parameter.</p>
+			<p class="options__text">If this parameter is not specified or the value is not a valid CSS-selector, a warning (<span class="warn">Cubic Countdown: Incorrect selector</span>) will be displayed in the browser console.</p>
+			<p class="options__text">If an element with the specified selector is missing on the page, a warning (<span class="warn">Cubic Countdown: Element not found</span>) will be displayed in the browser console.</p>
+		
+			<h3 class="options__option" id="totime">toTime</h3>
+			<p class="options__text">Displayed time is equal to the difference between user's local time and destination time specified in the "toTime" parameter. If user's local time lesser than destination time, the countdown will count down (to time in future). If user's local time more than destination time, the countdown will count up (from time in past).</p>
+			<p class="options__text">The countdown will continue counting when destination time is reached. You can stop timer via <a href="#onfinish">onFinish</a> callback.</p>
+			<p class="options__text">There are two ways to specify this option: <b>string</b> and <b>Date object</b>.</p>
+			<p class="options__text"><b>1. String (use to specify a certain time).</b></p>
+<pre class="code">toTime: <span class="tx">"2025-01-01T00:00:00+08:00"</span>,</pre>
+			<p class="options__text">"T" symbol between date and time sections is required (for Edge browser compatibility).</p>
+			<p class="options__text">You can specify desired timezone in the end of the string. For example:</p>
+<pre class="code">toTime: <span class="tx">"2025-01-01T00:00:00+08:00"</span>, <i class="cm">//(Australia)</i></pre> 
+			<p class="options__text">Timezone range: -23:59 ... +23.59.</p> 
+			<p class="options__text">To specify UTC timezone, you can add "Z" symbol to the end of the string:</p>
+<pre class="code">toTime: <span class="tx">"2025-01-01T00:00:00Z"</span>,</pre>
+ 			<p class="options__text">or add "+00:00":</p>
+<pre class="code">toTime: <span class="tx">"2025-01-01T00:00:00+00:00"</span>,</pre>
+			<p class="options__text">If the timezone is not specified user's local timezone will be taken:</p>
+<pre class="code">toTime: <span class="tx">"2025-01-01T00:00:00"</span>,</pre>
+			<p class="options__text"><b>Usage examples:</b></p>
+			<p class="option__text"> New Year countdown (Local date for each user). Specify "toTime" option in user's local time (without timezone):</p>
+<pre class="code">toTime: <span class="tx">"2025-01-01T00:00:00"</span>,</pre>
+			<p class="option__text">Site maintenance countdown (Global date for each user). Specify "toTime" option with your (or your site) timezone:</p>
+<pre class="code">toTime: <span class="tx">"2025-01-01T00:00:00+08:00"</span>,</pre>
+			<p class="option__text">Count up from New Year (Local date for each user). Specify "toTime" option with date in past, without timezone:</p>
+<pre class="code">toTime: <span class="tx">"2010-01-01T00:00:00"</span>,</pre>
+			<p class="option__text">Count up from foundation of the company (Global date for each user). Specify "toTime" option with date in past, with your timezone:</p>
+<pre class="code">toTime: <span class="tx">"2010-01-01T00:00:00+08:00"</span>,</pre>
+			<p class="optoins__text"><b class="warn">Warning!</b> To display large values of the number of days you may have to reduce the <a href="#cubetextsize">font size</a>.</p>
+			<p class="option__text">Use as a clock: show user's current local time. Turn off "days" <a href="#showcube">cube visibility</a>, specify "toTime" option with any date in past, specify time with "00:00:00" without timezone:</p>
+<pre class="code">toTime: <span class="tx">"2000-01-01T00:00:00"</span>,</pre>
+			<p class="options__text">See <a href="examples/clock.html">clock.html</a>  in "Examples" folder.</p>
+			<p class="options__text"><b>2. Date object (use to specify time relative to the user's current local time).</b></p>
+			<p class="options__text"><b>Usage examples:</b></p>
+			<p class="options__text">60 seconds (1 minute) countdown since page loaded. The countdown will count from 00:00:01:00 to zero:</p>
+<pre class="code">toTime: <span class="tr">Date</span>.<span class="tr">now</span>() + <span class="nm">60</span> * <span class="nm">1000</span>,</pre>
+			<p class="options__text">60 minutes (1 hour) countdown since page loaded. The countdown will count from 00:01:00:00 to zero:</p>
+<pre class="code">toTime: <span class="tr">Date</span>.<span class="tr">now</span>() + <span class="nm">60</span> * <span class="nm">60</span> * <span class="nm">1000</span>,</pre>
+			<p class="options__text">24 hours (1 day) countdown since page loaded. The countdown will count from 01:00:00:00 to zero:</p>
+<pre class="code">toTime: <span class="tr">Date</span>.<span class="tr">now</span>() + <span class="nm">24</span> * <span class="nm">60</span> * <span class="nm">60</span> * <span class="nm">1000</span>,</pre>
+			<p class="options__text">Count up since page loaded. The countdown will count from 00:00:00:00 to infinity:</p>
+<pre class="code">toTime: <span class="tr">Date</span>.<span class="tr">now</span>(),</pre>
+			<p class="options__text">Count up with offset since page loaded. The countdown will count from 00:00:01:00 to infinity:</p>
+<pre class="code">toTime: <span class="tr">Date</span>.<span class="tr">now</span>() - <span class="nm">60</span> * <span class="nm">1000</span>,</pre>
+			<p class="options__text">Optional parameter. Default value: "Date.now() + 1 day".</p>
+			<p class="options__text">This parameter can also be generated dynamically on the server side.</p>
+
+			<h3 class="options__option" id="cssclass">cssClass</h3>
+<pre class="code">cssClass: <span class="tx">"zzcubic"</span>,</pre>
+			<p class="options__text">Defines a CSS class prefix for all DOM-elements of the countdown. Useful for <a href="#css">styling</a>.</p>
+			<p class="options__text">Optional parameter. Default value: "zzcubic".</p>
+
+			<h3 class="options__option" id="cubesize">cubeSize</h3>
+<pre class="code">cubeSize: <span class="nm">150</span>,</pre>
+			<p class="options__text">Defines width and height of the cude (in pixels). This parameter always transforms to even value (75 -> 74).</p>
+			<img src="data:image/png;base64,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"/>
+			<p class="options__text">Optional parameter. Default value: 150.</p>
+			
+			<h3 class="options__option" id="cubesidemargin">cubeSideMargin</h3>
+<pre class="code">cubeSideMargin: <span class="nm">20</span>,</pre>
+			<p class="options__text">Defines left and right margins of the cude (in pixels).</p>
+			<img src="data:image/png;base64,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"/>
+			<p class="options__text">Optional parameter. Default value: 20.</p>
+
+			<h3 class="options__option" id="cubetextsize">cubeTextSize</h3>
+<pre class="code">cubeTextSize: <span class="nm">100</span>,</pre>
+			<p class="options__text">Defines font size of the cube faces.</p>
+			<img src="data:image/png;base64,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"/>
+			<p class="options__text">Optional parameter. Default value: 100.</p>
+
+			<h3 class="options__option" id="colonsize">colonSize</h3>
+<pre class="code">colonSize: <span class="nm">20</span>,</pre>
+			<p class="options__text">Defines width and height of the colon dots.</p>
+			<img src="data:image/png;base64,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"/>
+			<p class="options__text">If you don't need colons, set colonSize: 0.</p>
+			<p class="options__text">Optional parameter. Default value: 20.</p>
+
+			<h3 class="options__option" id="labeltextsize">labelTextSize</h3>
+<pre class="code">labelTextSize: <span class="nm">20</span>,</pre>
+			<p class="options__text">Defines font size of the labels.</p>
+			<img src="data:image/png;base64,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"/>
+			<p class="options__text">If you don't need labels, set labelTextSize: 0.</p>
+			<p class="options__text">Optional parameter. Default value: 20.</p>
+
+			<h3 class="options__option" id="labelontop">labelOnTop</h3>
+<pre class="code">labelOnTop: <span class="nm">true</span>/<span class="nm">false</span>,</pre>
+			<p class="options__text">Defines label position: true - above the cubes, false - under the cubes.</p>
+			<p class="options__text">Optional parameter. Default value: false.</p>
+
+			<h3 class="options__option" id="labeloffset">labelOffset</h3>
+<pre class="code">labelOffset: <span class="nm">40</span>,</pre>
+			<p class="options__text">Defines labels vertical offset.</p>
+			<img src="data:image/png;base64,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"/>
+			<p class="options__text">If you don't need labels, set labelOffset: 0.</p>
+			<p class="options__text">Optional parameter. Default value: 40.</p>
+
+			<h3 class="options__option" id="labeltext">daysLabel, hoursLabel, minutesLabel, secondsLabel</h3>
+<pre class="code">daysLabel: <span class="tx">"days"</span>,
+hoursLabel: <span class="tx">"hours"</span>,
+minutesLabel: <span class="tx">"minutes"</span>,
+secondsLabel: <span class="tx">"seconds"</span>,</pre>
+			<p class="options__text">Defines labels text.</p>
+			<p class="options__text">Optional parameters. Default values: "days", "hours", "minutes", "seconds".</p>
+
+			<h3 class="options__option" id="showcube">showDays, showHours, showMinutes, showSeconds</h3>
+<pre class="code">showDays: <span class="nm">true</span>/<span class="nm">false</span>,
+showHours: <span class="nm">true</span>/<span class="nm">false</span>,
+showMinutes: <span class="nm">true</span>/<span class="nm">false</span>,
+showSeconds: <span class="nm">true</span>/<span class="nm">false</span>,</pre>
+			<p class="options__text">Defines visbility of the cubes and labels. Colons visibility defines automatically.</p>
+			<p class="options__text">Optional parameters. Default values: true for all cubes.</p>
+
+			<h3 class="options__option" id="leadingzero">leadingZero</h3>
+<pre class="code">leadingZero: <span class="nm">true</span>/<span class="nm">false</span>,</pre>
+			<p class="options__text">Defines leading zero if cube value < 10.</p>
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAACgCAMAAAC8EZcfAAAAjVBMVEVeXl5bW1tYWFhhYWFVVVVkZGRnZ2fd3d1SUlJpaWlQUFCIABVra2tOTk5tbW1NTU2hoaGtra2NjY12dnaHh4dvb2+EhISGhoaQkJCTk5ODg4O5ubmFhYVycnLX19ecnJzAwMB4eHjKysqoqKjFxcWsrKzQ0NC1tbWxsbF+fn6ZmZmWlpaJiYm9vb2lpaWc5dt2AAAG9klEQVR4AczYwQrCMBQF0WlLC0Xx/z9Xg1daeBJFAs55mywvswy3s2u1V1vP2rF08N7GL/v23MmaG7gvRverQ5fXHY8Dz+tw9OsXNPcDeT+Q95tw95sm3P0yUNvvAXO/BnO/BnO/Bm2/QNsv0PYLtP0Cbb9A2y/Q9gu0/QJtv0DbL9D2C7T9Am2/QNsv0PYLtP0Cbb9A2y/Q9gu0/QJrv5j56//p530zdV/J11y+N3JfHdjmFXfm7b83bZ2PAvjXNhlPH6GKUtoFaEmBjh+U9v2/vKscOzPN1z6as4t0T/7JskT59BC7E86qvwQO9mkgPLrA4cC/8mlg0laFBv/o+dPA4T4NDCJtBJD5CHC4TwGTw6O6ahD71KeAw30K2IMVNOgIcLhPAfn8rIEvdfO1axbze0eAspydp7um/nlf6lNAPj/3gfVhPe7yeb7LAC/HeNbbeVLiU0DeXw84246/Zf2RAj6/jb+nKfZFIO+vBzyMVd4mCvhLn7V9KvYBCF8sUPXXA67iHR9W72Hv/b4HfIhn7Q5vnfC1xBeBLY/0F4HRtz+/+vE7qf3dtxEYfesmiKpLuOxHmQ9A4Hh/V8CFLwXHnc8Zh76ugS++4InE1P5QmQ9A4Hh/EXi3B+b7/OfRpyvge8BcZ46z5mU+K4HG+4tAtHWIPp8pjkbgDNOP9PKB4cR9Gqhx104FRDWbns9V6HXyG4gHbin94OJX7tNAb6P9ReCpvcWx7wsf8kcHfGr/tBIVPJnTIh9tsNLApr3FRfncPUgB6MfDQnTW7YTEfKRB0l8EYo5eR19Me+u9B4rs8IGLDiYf4b50g7y/CNy2j7n2hWFyH4DtzLiVRBZ4gqmPNKj7U8A7zIEJn7u0f/McgG2dxxRw05414z4FJONXAV/DWNDxt/ZAh7EgOuYO1xMfByqfAoJRp4CPni4tcNLunxM+U4FOfByofAq4xO+CFBDdNgIg9uuEz6DbHfFxoPIpIH5bvWSBUw/cJIGmAz5oXyGwugXQ5IG2EFjdAmiyQO4bCfENBT5qoMkDuU8DKwJ0Q4EmD+Q+DawI0BHgEwOaPJD7NLAKX6CmgI4ARQFn2pcAcp8CRhcDPid8DGjyQO5TQPL9MwcKA5o8kPs0sCJhQGFAo4EFPgDZ8+e6jQCFAU0eyH0a2PJycQQoDGjyQO5TQOCy/XXAnxooDGjyQO7TwIjTcQQoDGjyQO7TwEBJ90eAwoBGRTog92lgYnhEJwEKA5o8kPs0MOnqNgIUBjR5IPdpYEUKdAQoA4Hcp4C8PwKUWwBHCsj7I0C5BXCkgbQ/ApRbAEc6wvojQLkFcJQCkv4IUG4BHKWBvL80UFTuI9AUAbkPwHQcAcpAoGXAURnQEaAMBFoGHJUBHQEuBwItA47KgG4o0OSBlgFHZUA3FGjyQDgA/FXiSwLdDYCWAUdlQHcDoCVA6vufaB8BvgwEWgLkPg10BCgDgZYAuU8DHQHKQKAlQO7TQEeAMhBoCZD7NNANBZo80DIg90Vg9FXYckAs1b0kfAb/mmk8EPu19gXgrsT3DehSNMEWgL6bhM+8YnnOA3/41RDtsw4/RonvGghPuj8nHvgERsJnQL94IHqaJnwW9EWJ7woIXqZACUDc4CvhM3OsuXugwVJYwmc3+DFKfBEYeFWPh0gHFCwmJnwGi4l3AfjZLiYmfHaBFe0CXwQ6RxqMwGO7HJvwmVW7HGsC8Kt1/NA+i+XYIh+AcfxqHPqLwAZrYdqHVcJDB5xhGFsdLGgX+QKQv717BcRDdFQ+s/CDGMDAXWnfEoO4yAdgev4TbPBFoOAtnse+z+GliqoDmiOGjAK+YyW+yAegI5EeEFUdej4/RB7Mb+AzXkBJDpFVgQ9A2p9IHyhbTHLffbMxRmcEYhyPd4kPeLwp8AHI+9PAn+MgjL4ah84mAu1mDKG78s3XuLDEByDvTwPlAffe1hOvq+YrHPg0EWit/cLB/WLidbI84sB7mQ/AfIVpoHQvBm4/j/H1vJVEIEjTeNav32e9VaW+/4vjvgRQdmOVA3QeaH0afdbKFfsIULJAOfVe/txfjAbax1XvRdKZLfYRoBCgmPnDOrZXi1FAZLnbx/YWrtxHgMKAoJzmi2b6cTk5L9NAZLOsm+lifqqsLfcRoDCgycdGoEqxjwCFAKmPAIt9BCgESH0EWOwjQCFA6iPAYh8BCgFSHwEW+whQ0sA/z7/q00C5AbDYR4ByA2CxjwCH//8UksE+AP/jvn+anWMagIEgBmDp0OWkKPzZPg0bgS/474L/Lvjvgv8u+K/Bfw3+a/Bfg/8a/Nfgvwb/Nfiv+q/6r/qv+q/6r/qv+q/6r/qv+q/6b/pv+m/6b/pv+m/6b/pv+m/6b/pv+m/57d/3AH6n1E4bpEcCAAAAAElFTkSuQmCC"/>
+			<p class="options__text">Optional parameter. Default value: true.</p>
+			
+			<h3 class="options__option" id="shadowcolor">shadowColor</h3>
+<pre class="code">shadowColor: <span class="tx">"#414141"</span>,</pre>
+			<p class="options__text">Defines shadow color while cube rotating.</p>
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKsAAAC2CAMAAACRfo1uAAAC/VBMVEXu7u5YWGZERHhdXWZcXGpHR3BTU25VVWthYWhhYWNfX2FgYGtdXWNdXW0/P3xoaGtQUGtBQXdiYnJkZGhTU2dWVnE/P3lQUHVHR3NZWXRYWGJnZ29FRYFPT3tNTWlHR3ddXXFLS2xdXV5FRXtaWmJWVmNQUGhKSnNZWXdKSnBgYG5lZW1BQXxiYmxCQnRKSoFkZHBCQoFVVWZKSnpNTXZERH5aWmZOTnJJSW1HR3pTU3JfX2ZHR4BdXXROTm9lZWo/P3ZERHFgYHFZWXFAQH9WVnhQUHhZWWpkZGVSUmpcXHZqam9HR31ERHRLS39WVnVMTHxHR4NSUnpKSndJSX1TU2RVVXpTU3VNTXpZWWBaWm5qamxnZ2g8PHlTU3dsbG1NTWzJyeBCQnFQUG9XV25FRWw8PHxfX3RAQHMbG9VKSmpRUX1QUGW8vOJPT37AwOE6OnlERIW2tuLNzeAeHtHGxuHKytU8PHYfH8xNTX/Dw+G5ueM6OqQlJb88PIhJSV+Njc9PT1UvL7ktLawqKrIkJMpUVF42NpwqKrcjI8RLS1lMTFIhIcdLS4QpKcNlZXRQUFuUlK1HR2ZYWFk5OY6QkNFBQZhFRZFCQo00NLJAQJQrK7wnJ7sxMaRNTWTMzNYmJscrK783N6dGRoZOTl83N5g2NqE2NpQwMK8wMKciIs9KSmWwsNs3N6xFRYs+PoMxMbRUVFU8PJ7Fxdk9PZk9PY5JSYtUVFq/v9U/P506OpN3d51mZu6dncOJiZ9TU300NKyVleijo7+pqeWkpMqBgZVtbXy4uNmqqtKOjrRaWoN+fqdycoWBgeqwsNOtrcGAgJ4yMp5jY4liYn6Pj6hxcZhra5SKiuq4uMuamrWEhLBvb+2fn+Z4eO15eY1ra4yiouCrq7eIiKejo7bj4+WBgdCUlL2enqpSUpHb29/U1NlDQ7RISKBjY810dMy4uL15ebxhYZlNTcpTU6BxcduWlp7ExMqAgIdZWdhkZK6MjJJkZORZWb2Vld5AQMKcO/GcAAAWuElEQVR4AcTKsWrzMBAH8HvVb/z2DlkCwXbBhZItg7EDzSYHCnoADxkC6TsIQ9fgJWhyEZieLmoVG7U+Nyn9/c93p8MQ9Lr6ocVN7IHv8P+PHYBN3zlbN6hR3crMxTUfqga4XrZ8M6xfsAem7v5Kj+dcoQGe1dNkDzafcF/SZcycWjArYOmW08wxbmLZIOwb/5ouA47FZpLcjbAiLwpqky2AIYucDdWFPMqR7bhfSD9GepZTmBKfIknos1IB404RW9dWAzpKpQuKtKn6TBclXCcYc8ykzDwpsagNdUapqg2dhI0QusKXlsJzJxGLmNiRBEOOMOKUjROYVinVZmLAX+kHQ2tMjbgf4r4y/HqD7/17/squR6u6Vno3pOu6No3dGoOrLofsWekyZI21XtMoz987I+ST4igQxeEb5ARzCe+QC/QlsncfJDtX2WXaQsjGkGTVCo7KGJhFplfN4AxZZRZZhKEdio4Gg24CCcx7VcW0f0rb71dJvfeowk+/dLteZZqW9QSpkIJJcbLqoCsfnwooU8uavwc5pTiey9nVuu4P+3XcAwuSRlGUPlmiB7cVyw3GxWkFnAo8sarDLhZj3uwwMvQ5Zrf73flZx71whcl4JXD5pqfcVf/vCqVegb+N3s0as9b1vEP1Z+i6oRuWgFbGLdrv9zdWem5pS2FcJC48LimgPEOFLDEcvBndli2sIWJn/Gp3zUMJHk8FdIpuXp0Q53HiLb1lckbXECpv47F/bpPHOEcXWB9CW1W/P/blvN1u4/zRZHgmgoAgzBNzY24SPHJONnX4EbMxn21mVdZsfWv9rDUjE2Vk5DETEZ1fct2iqw+UygriNWc9sVtU/xq9IAa5foYHZqRBHjNB4hPf4E5+gyvM71dN8yE9eJGqvlKjjm3YCMEwsIDB9X44HKSuMI8DLI0MyklONOIQTdU0gsuB4F10bcMRS0R9lbm+BBXswBYE1R2rCYpcbFuFRuUBKPrdc6ixwTNxrgoc1XHwR2M8Q7FWHFwyRhi+nD8S1begwQLDVw2aHZ+fjzFdLFQMg88yqioYRQlYP6FKiUDcU4bKUM5gOBoOBoMRDzB4a7r+mH7Ew/ThnellAo9FjoCoMvrwqQzNSmdEObn8Y3QOWpYIwgCOjwurp8LAcjtsiwgrgbigRSYi7qUQNAqNPEmoS7HrWejkvfCyH2BP3vwIfogOXrpJFOQtOtS5eeYZ3J15d9z3999nZwbmMG/qT+tJd7GkBxB3ILL19sLZOtm6ULe7Pf9hzs4woRpHDfmls0MPWlVLuoel60P9/ppIDp8Er7DYa4yaYExr0gLPIQULQpqlMSNeQ2uMaEBriD5izImI/gVBYAambGpOlcbTsYo1thgDSjfCKBdi5u481TciOJnMC0zwBFKrZTJqes0wdANGl7m6y3iup3QkSb9nqDwrZ3sGCR5jqdpiAq/tAb6qfSUJx3cJHUiwwKgelKnSq9zgV3yl0A+vekhi3+93uHwnr1CEuEVR9B5iHkECH6P2kCTEYf9Q7Qe5+LBcFqC82ICFBjJ7YCtFdqS0j/ZpNlfZBIBfS/pWpWahVCipra6IIMkOBtpEtNv6S9DPO7mXrIsmLdcUvMXSrSBut9pl+xzvIPphks0X3n/K7Fg1lTWK4riiRcxEhKTTTmYag2A1jcWF0yhMbSEJ+Cw2FqYw4AOcZ0iVN7DKSwQCITZWRrC635rtuJ1Zez6O/+WYlD+2Eg73LpdfYt1XtUhGUYto4ev1deGGl9ESTzZfjvninuXLcnmsoG2otcN2eYu2B/f+vkiX9vquMGr+Oi/vZf5itHTPFtZjKE3Dqd06fdaS++V9vVi7N7fy3jBp/maqSIl5OjjqbjZuuPCW6/bWvU519Tdva9kaD8e9+Ztfbv0Ja0lPsyeu9dRKe7Ya6y9ueFnhLnwZruvCW9auUvlrOw3pc+bEbKyOa5ynUiixQjDSR+j+afhjWzPtjG7qkSK1cmCm0KKWY+uP++tqS5UnPt9VH2RojJkXLcY8dWIU/sLOuIIVbxqkHKBeLVmxa7QVl+eqmEZX1buqEyMnZztVWmzavYV1A2CCJ0nwPMm0lrC5/1r/pT1ghdTcwBTM17WsRO02TlZnBBUVnHxedmK2s3G+63jYuGnglXdi9qd/55bTPsN6SPKJlb1kxZBpVS8SJKdW1mpT3HVWtOpVWyU8zXSiGywtNWbvlO9vFe6qUPzYwHpM7BTpt9ram7HbRUMs3x1WVijTf6ccYN1bTkg7MpaqE2PnZQ1Z3nmL2dJuiNdUnJkUHWH9tq0d664cW2XIvGrDDZnQO0jxM7V23aYYvHtYP01rone99rtKR6XP/5ZPmmndM9VPP530Devu+u/q49nKZljzwYnnohJriMcNUnRp3cH6N0EdLN8jVkydGJ+SoTfsVCtrMZVqv7D+JJJY2WtY1Ytsa+GUqIal3dWUx15E34EtrF96VXJyRWef78pO5HfilppKta8KusZa+Lvax85Z11UqrPm81mmhSprnu2rXT6fE08iJKZWkNZ+0aA3FuumYqdZKrSqm/tlKkbVGVnJ6fHRXcmL6XS0trIUh3mI31JblexDrx79ZGRr0A1+ssqlcm0vEeiDpoDM49Tjw3NS23gTDYFgL3NwLq/NR41p8CreMZd7/+LMR67GzSneRWtFV1qEbgpVjq9b2dRDr3r4qblpuDWQUoLm7GuYYy9Vux27pW5WYEXYU67cIqUspXVRH2DqWZV6VAlRja7TYi/UT0pXD4bHqD1TZ6/eQ+3FWc6IdYrV6Nr6qJkfF7LtG0bdYd6vVipxsVWcgI+E5+bWGhyIpKr8p5mp/ivW33NrPW7EyK4CBDFp3Uy2ux1w1rhbCUatnY75fsW7VaaROrJham0HTVceoWCdVMSrytBXr10qj+/ZkVnpbtZpaNWqsjXzWxU9Fgs9OnZZUrerETKeeVaSeCD2JJhW14qD3g3uud9/r4c171yaGl1qtVOuz2vfNrMnAOUnaz4h/TsvV7DVzkZPjT5+dmHHVSZxZN6u0+1VB+0eG2Crza9GoPkqLR0K9XjtxCzLrBzkROzXTiZGTq46qnP5PwLQIU+lk0smsB7YitdraYoYVYysJsVxRQTvZnK0+Z/bI2MlidbK0epKO+JbaBMv3kVmPthXL1cQ80X3JqlD3qJW8ZP2fUPtXbVyJ4jh+i2BXBiOcQs2iah8gvRqrCE6fRp1AoCZdcJOXEPMCex9CjSoVAakS6IJd2I3AVwGTNKmSQKrV+U3GR6PJON+z2T+Kwn50GHf6UNY3Q2pxQrqceSfWMq2o1DnrvJilaUUf4NmJTGNz0oz7VNbOMbLsVNtsWrfF8dA0zaHblm21DLWuafpCuq3DbceirZ3BmZ1KrWk1tUdlfbU4OY8GqaV6abttsvtT+aGoZuw8SavyuIvuVdHu2KawQmo7q2YHZX3/+ayyVc6yFkyQZU2ZhuFFPwjWZdtl93q5qL0v13QMte/3XVlfnEQOWtLoTmOvjjJEWZ7nWQZ2lIuKnZRTfD1Qhtsi9UzLKbqiQYurhdHt4pZ7UdZnTaoZRwHae9smA64rirKv+DoO2TElp7J621ziRFFSxXGHH2vambSeMqWjFz6eAaUch61qTCtXY6tZV1ZeiLyqbCLCb4d7LXO6titq71qW1gKXDvW1XKllqyzu527RW5/Ymhh5/S9bKfaVCyWlej9gLZyoBr9ppXSKSXEqMpFOBy1skRPdgonSJHEMq2cNiKyrQq26uaeVJWEcXseUoOXv2hAvVKkSkeOR4hOUqXbrFVsrw2m3hp5T5FEU7cpQzyvpcl72NlTt+n9mWw9Srmqy/rJw4KQvuxNSdMHWOkG+HD3PH2urjhB7PxyV0PVor6xFRk+0wVaHWjxpU03RigYtVmf26uhWi9Owhl6947Xqi4UuiWWPJBfe0Inw4zkdAnbSWJyoYutHguCzWQMvkCUlFlMHXBiQNdhAUUMabiQpNKxBR4eg8DQra3+r7gbVbP3EVkeZTvzpJQX9X93AieIw9h8jUsSoxqH2IdUT9B2RsJSdLOXuevUHW98SYK0FcsANNluy7oNTMQ0ViB6xFjHCgXgM9LPKB3YP6/Ts+5S83k+2Hn+2UvL3jVjT51t3oqBYk2Lw0dozlMMZ6hJ2Wq13NNQbWw++PVABlUch3OwjtnKkhvUxRgIfrQBvp3K0S1gbn4lstXVg67tv5vruTSDHdX2MG7i0V7uVdrlWVnIL7HUo7ZNWV/l4rP15ZevLjS2XpsfCKbuBVYyc1HivsE5otP7LcZL1jdLY3/z9l63PY6KPCXooWVFAI63rPlgvg0sUf30V9B1lxV0xE9ma4a4fzuovOejPM1ufRlQQ2clBLBVwjioepHXSj7xrgqUOW02ldbLi5qs5+k3DUu7pHy75/gAQeOxVVpe2Gnxnpb9NLpXVTN7FRq2hltPe2f+Wajox4gFW615JOpnYrCtYH7q5KR1tlVtZrMYuDe2WRHvXPWu17nV++T9Z9/Mz/ZJzKh5aK/su/1JyxzptZFEYx2mcehtEUnh3UxnqHSnIBVIKXCBFjoxkU1lIURossESxBX6IFU+wL+AHiDQylpBJxmOEkM2MlCmCQpBR0lAl9d7v3PHlnnvmbsj/YDKYifLLYShnZFddWLcktXrSza1PtPXo2HFivFYmZf1pW8+3TKsY1TM9rGXM8s07bZVddvlej67EVmFVZ3U/epSF/WNbPxknhtJOKX2EFShpJakC0TX07tjvlL23rWfGiogqq9eX63jdfDg6Ovo4Y8oqdflOfee0Clb1WB0KqwrWoyNp3dWJe1TQJ9v6HUgR229dWXUnwlrFwNrl1i6zvlF7Vbf/rF6psz5c/YJ178y23vmpRkrWZTWXzEpOttdl3AGUW988UcP6bes4t25IKaySuvfdtn4uhtZX6wVdXijGYAY3KrYuk/XGa72BcCOfXcvqrHcP88W23hdDMR7r6exBaqKNn1b1XrWVh7u/cuvuBsdxJ7+d6t62/qt50ltQS1undUMUVpRbq2q4dkbWS2XF2D3P+10P0lZ2J+fX4r0WF2prtdrS47fu3zhOzOwjWV0nxncr3VfbevsL1uUw6na7p9ct5O4V39H3/I3VYYF1A9Zu9+JyQ2dZRXsYxO/pzn2bq5ui+qaDTYy1WmhtgfUza/g4q26JtaWlj7eOCqwrZB20zF4/3JCPx6zkRD4n2uXWmW+vdWNt1Vu6ZKStJmNeWNVV0PJap2RN2G2fGGE12ifCyp281qYlS5m1iskLzV4X1hdvXlAbGGp3OiCr0DEnxvSMW89hxfi1xntN1tTYVzBUbsW9vguriayIrFGq90kLlWrunnHrJ6mTTmZNHqSm8MKxTtytknVfWa/tnz+1jkE4YPt9z61nm5tNNfgoqr3ZplptWE+ZFfmtbrZ1Tc1zrmXtre9R59x6YlgwU+1mW0RW9Y/t70eJlrrW/f1BS5GUVZ3kWmm71/jro6lyIumUnXHrXVMEq3AiZkWWdV9Z214r3Z9+PSIr9opZe65mHePr7Xdu/SykmOK0NWRKYW0XWlFuXWP9r/WOW+8L94oRrUznP7HiehVW2ik+a2vsdcq7/u+59e+mJ+ldiWG9KLC+WFhXPFZabMqtcr/MivnBrV8f56xhFtYah6qxroEarH1jtchkHTT9TibFXr9x6y1DNtzaGGRbEdcmZG0oUiCsFfWhRu01+om1tF6i1uml3rhd4tlSaa01ag81yTpxpMFKEOTWQJVbKwhGjEpZE7I2CqyltZLd29Jban3JadU4MS6V1Rz3wKjl2daoZ6z6JO1k6ZNqUvrQOpx+a9zUSWsNY9fIjHUFo6XGOq+RVZ8UUJXAtY6Dimencq8brnWmVEMaB0pSXnjY6x2OgxqNVS286PV6Y23FSf0sCNaUkzXpq5OyCvf5nDioutbrIRJacEXXfWUdDNURtwYZvjHR76U4VjuuuNYx/qchjko0PqvxbrnWc+2Ue63JhiO1mSiFlBXPscs0/wInjabCSu9fxBXhlNLcO3OtZ7RVUblR1jHsuKdWkzEpSiLw4oB8jTlMk4pbiEtgEGCtjwjWc9d6Mhx2hp28BoZZa6y0r3fGG47xY8862loL6SKIHepwoC+Bp5hF4rE/7NE/Z671GFbpLH6WUmd+CMeQW8NIvRstfupBDFV/slPwmzUoQ1oItZyLP09c65eOqIyRVpRGPfott0tHh3qt25jt7TItNkoqlW3NhC8EtZ88dSvpocxO1Qc+3bnWe+H0SQOMWg82O12sthyHRJ3HcKLK9jAj7CTeyaU7cUbUrMKh3MnCc6o+u9YfRulv56HypH+oisZhkqqSyYC+HqQ7WgprJR7Tm6MsSVGSRfiyPx5qodTCKrU/XOs3s1A/1cZ21NVJ9alDrZgS1RRn9kn6MJp0HOdLPYVhr99c6624BrgTL1Z5mvUPWaMwZlRVJ5nzk/rzaeBQfU7zpDL5hEJpdbQYVsesDYhBIqSkTS1tNI53iCf3Ko2mJdGwc6Amhx6UywfqVT6wpIV10kmmCqcH/ue+bcchTpqkwz8KnK/wevWSRkBRSVrjA1kZU2z9C8MrsOqe6tFx7ys9lLYCy6o8xlq01dc7r9F/td2xbiJXFMbxaB7A0jSTFEQuaFKMGFkOBRIFD4ARRLQ0rqgsp8mIh6DwE1DwGJGSnsaIOCtXRvautFo/wNY7H2fPaO79zoVLsf8PRPvToZ+5HgMXa9UgBjappkCkTj4r+pmtuztubGdbfacl1bvehLv1+42te4IGqddYqMvry1PdXJKwc9ORbju+9T+2vsRKbWa8E7Od2q0j3rN1G28NansyfTZlIL4pFtS+sPVp8b27hRNLw1bbqfdMqiE5bNKUus2xun/Y+nlBjZk6HU81pqqTpO4zP5vZTqcHtj56Dyl1G4/UikGKOcfkVJ3I1Ktg+/8n7Stbv56UqhPpJbGA05G6dWTcXOb0zNb32jryrdNgPZltrUt6vrUDqUsmtrZi6yelapFWOwZyaZJqnZSpmvXKhZHZFHMbToduPcxzxkhrq+90rD8Z3Y0Wy1GxKMiK2VbNt7ZlKGkf0ZrPJ0bqDFn/BY2kdeokaXvYtmNonFOl0i+WdQORcgtN9YDa2jYWa/WIpOV+t6y7wn9a9VR24v9nKZExOLGzpPNy/odl3Rd+U/nKk7TRsH++05cmcc45oINyMNhY1v+LUH0ZrKQNupUo5aKtqLl5VfkOYPbEO8u6PerUSExOlDfIIk1lkKo2SzNpgFmV1V4s61voql4NaZdyxbKqFEN618yxhivLrWV9oIOeqNsPWHPXmyd5XapssbpZdy2fLOvrskqdEVLf2saqunV5s+SgzPLMboCpr9lHy/oMqlqjtEerDlpjk2pSFk5v6WmfLeuqqJsUk0P9SdAZlEIoSiqLqcxKp5Vl/bKcNOvLpFar+iD56WJhq10WYy0p+81WaqVak5ZfjJXilz54zbBD5Uyt7GQrS8mLrwel6OUUmA/0UikaxFiZyCkx1uqzVRusLFPbuok8q3bVuvLLZU1pHqLCSnel8/ZirS3MdmLk9F6fUn1ONLsg4P3sHpVY1a+2dbdeT9asDaZacZqvfLGF8v4XaYYZVm1jWz8ck/5JQC/fenG4qy5a6lt3tvXvNcJ7dCTx4SfeSVlOlaq3qpb67W3rW20VrzIrr3Qls622l+/KWnDpqtrWtj7UUk6t59+VnJjRvczvybY+LmElHgOZGkyAgvQjq1H2alvf31dn9Bf2w1utGsBvd7lEebhrV9EAAAAASUVORK5CYII="/>
+			<p class="options__text">Optional parameter. Default value: "#414141".</p>
+
+			<h3 class="options__option" id="shadowintensity">shadowIntensity</h3>
+<pre class="code">shadowIntensity: <span class="nm">100</span>,</pre>
+			<p class="options__text">Defines shadow intensity while cube rotating.</p>
+			<p class="options__text">If you don't need shadows, set shadowIntensity: 0.</p>
+			<p class="options__text">Optional parameter. Default value: 100. Max value: 100.</p>
+
+			<h3 class="options__option" id="animationpreset">animationPreset</h3>
+<pre class="code">animationPreset: <span class="nm">0</span>/<span class="nm">1</span>/<span class="nm">2</span>/<span class="nm">3</span>,</pre>
+			<p class="options__text">Defines the direction of cube rotate:</p>
+			<ul>
+				<li>0: top-to-bottom</li>
+				<li>1: bottom-to-top</li>
+				<li>2: left-to-right</li>
+				<li>3: right-to-left</li>
+			</ul>
+			<p class="options__text">Optional parameter. Default value: 0. Max value: 3.</p>
+
+			<h3 class="options__option" id="animationdelay">animationDelay</h3>
+<pre class="code">animationDelay: <span class="nm">50</span>,</pre>
+			<p class="options__text">Defines the delay of the rotation animation (in milliseconds) between adjacent cubes.</p>
+			<img src="data:image/png;base64,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"/>
+			<p class="options__text">Optional parameter. Default value: 50. Max value: 100.</p>
+
+			<h3 class="options__option" id="continuousanimation">continuousAnimation</h3>
+<pre class="code">continuousAnimation: <span class="nm">true</span>/<span class="nm">false</span>,</pre>
+			<p class="options__text">If true, all cubes will rotate every second while counting, even if the value of the cube does not change.</p>
+			<p class="options__text">Optional parameter. Default value: false.</p>
+
+			<h3 class="options__option" id="colonanimation">colonAnimation</h3>
+<pre class="code">colonAnimation: <span class="nm">true</span>/<span class="nm">false</span>,</pre>
+			<p class="options__text">If false, all colons will not be animated.</p>
+			<p class="options__text">Optional parameter. Default value: true.</p>
+
+			<h3 class="options__option" id="autostart">autoStart</h3>
+<div class="code">autoStart: <span class="nm">true</span>/<span class="nm">false</span>,</div>
+			<p class="options__text">If true, the countdown will start counting immediately after initialization.</p>
+			<p class="options__text">Optional parameter. Default value: true.</p>
+
+			<h3 class="options__option" id="onfinish">onFinish</h3>
+<pre class="code">onFinish: <span class="tr">function</span>(){
+    <span class="cm">...your code here...</span>
+},</pre>
+			<p class="options__text">Defines user callback function that will be executed when the countdown time will become "00:00:00:00".</p>
+			<p class="options__text">Example:</p>
+<pre class="code">onFinish: <span class="tr">function</span>(){
+    myCount.<span class="tr">stop</span>(); <span class="cm"><i>//see methods below</i></span>
+    <span class="tr">alert</span>(<span class="tx">"Happy New Year!"</span>);
+},</pre>
+			<p class="options__text">Optional parameter. Default value: empty function.</p>
+			<p class="options__text">See <a href="examples/callbacks.html">callbacks.html</a>  in "Examples" folder.</p>
+
+
+			<h3 class="options__option" id="ontick">onTick</h3>
+<pre class="code">onTick: <span class="tr">function</span>(){
+    <span class="cm"><i>...your code here...</i></span>
+},</pre>
+			<p class="options__text">Defines user callback function that will be executed when the countdown ticks.</p>
+			<p class="options__text">Example:</p>
+<pre class="code">onTick: <span class="tr">function</span>(){
+    <span class="tr">console.log</span>(<span class="tx">"tick"</span>);
+},</pre>
+			<p class="options__text">Optional parameter. Default value: empty function.</p>
+			<p class="options__text">See <a href="examples/callbacks.html">callbacks.html</a>  in "Examples" folder.</p>
+
+			<h3 class="options__option" id="mobilefirst">mobileFirst</h3>
+<pre class="code">mobileFirst: <span class="nm">true</span>/<span class="nm">false</span>,</pre>
+			<p class="options__text">Defines, how to interpret "responsive" parameter (see below).</p>
+			<p class="options__text">If false all responsive rules will interpret like "@media (<b>max</b>-width: value)."</p>
+			<p class="options__text">If true all responsive rules will interpret like "@media (<b>min</b>-width: value)."</p>
+			<p class="options__text">Optional parameter. Default value: false.</p>
+
+			<h3 class="options__option" id="responsive">responsive</h3>
+ <pre class="code">responsive: [
+    {
+        breakpoint: <span class="nm">value in pixels</span>,
+        options: {
+            <i class="cm">...options...</i>
+        },
+    },
+    {
+        breakpoint: <span class="nm">value in pixels</span>,
+        options: {
+            <i class="cm">...options...</i>
+        },
+    },
+    <span class="cm">...more rules...</span>
+],</pre> 
+			<p class="options__text">Array with adaptive rules. These rules works like CSS media queries.</p>
+			<p class="options__text"><b>Usage examples:</b></p>
+			<p class="options__text"><b>1. mobileFirst = false:</b></p>
+<pre class="code">mobileFirst: <span class="nm">false</span>,
+<span class="cm">/* if viewport width > 1200:
+cubeSize = 150, cubeTextSize = 100 */</span>
+cubeSize: <span class="nm">150</span>,
+cubeTextSize: <span class="nm">100</span>,
+responsive: [
+    <span class="cm">/* if viewport width 769 ... 1200:
+    cubeSize = 120, cubeTextSize = 80 */</span>
+    {
+        breakpoint: <span class="nm">1200</span>,
+        options: {
+            cubeSize: <span class="nm">120</span>,
+            cubeTextSize: <span class="nm">80</span>,
+        },
+    },
+    <span class="cm">/* if viewport width 541 ... 768:
+    cubeSize = 75, cubeTextSize = 50 */</span>
+    {
+        breakpoint: <span class="nm">768</span>,
+        options: {
+            cubeSize: <span class="nm">75</span>,
+            cubeTextSize: <span class="nm">50</span>,
+        },
+    },
+    <span class="cm">/* if viewport width <= 540:
+    cubeSize = 50, cubeTextSize = 30 */</span>
+    {
+        breakpoint: <span class="nm">540</span>,
+        options: {
+            cubeSize: <span class="nm">50</span>,
+            cubeTextSize: <span class="nm">30</span>,
+        },
+    },
+],</pre>
+			<p class="options__text"><b>2. mobileFirst = true:</b></p>
+<pre class="code">mobileFirst: <span class="nm">true</span>,
+<span class="cm">/* if viewport width < 540:
+cubeSize = 150, cubeTextSize = 100 */</span>
+cubeSize: <span class="nm">150</span>,
+cubeTextSize: <span class="nm">100</span>,
+responsive: [
+    <span class="cm">/* if viewport width 540 ... 767:
+    cubeSize = 50, cubeTextSize = 30 */</span>
+    {
+        breakpoint: <span class="nm">540</span>,
+        options: {
+            cubeSize: <span class="nm">50</span>,
+            cubeTextSize: <span class="nm">30</span>,
+        },
+    },
+    <span class="cm">/* if viewport width 768 ... 1199:
+    cubeSize = 75, cubeTextSize = 50 */</span>
+    {
+        breakpoint: <span class="nm">768</span>,
+        options: {
+            cubeSize: <span class="nm">75</span>,
+            cubeTextSize: <span class="nm">50</span>,
+        },
+    },
+    <span class="cm">/* if viewport width >= 1200:
+    cubeSize = 120, cubeTextSize = 80 */</span>
+    {
+        breakpoint: <span class="nm">1200</span>,
+        options: {
+            cubeSize: <span class="nm">120</span>,
+            cubeTextSize: <span class="nm">80</span>,
+        },
+    },
+],</pre>
+			<p class="options__text">Optional parameter. Default value: none.</p>
+			<p class="options__text">See <a href="examples/responsive.html">responsive.html</a>  in "Examples" folder.</p>
+		</div>
+	</section>
+
+	<section class="methods" id="methods">
+		<div class="container">
+			<h2 class="methods__head">Methods</h2>
+			<p class="methods__text">After the countdown <a href="#init">initialization</a> some methods are available:</p>
+			<h3 class="methods__method">start</h3>
+<pre class="code">myCount.<span class="tr">start</span>();</pre>
+			<p class="methods__text">Start count. Works only if the countdown is stopped.</p>
+
+			<h3 class="methods__method">stop</h3>
+<pre class="code">myCount.<span class="tr">stop</span>();</pre>
+			<p class="methods__text">Stop count. Works only if the countdown is running.</p>
+
+			<h3 class="methods__method">remove</h3>
+<pre class="code">myCount.<span class="tr">remove</span>();</pre>
+			<p class="methods__text">Remove the countdown from DOM.</p>
+
+			<h3 class="methods__method">restore</h3>
+<pre class="code">myCount.<span class="tr">restore</span>();</pre>
+			<p class="methods__text">Append the countdown to DOM.</p>
+
+			<h3 class="methods__method">hide</h3>
+<pre class="code">myCount.<span class="tr">hide</span>();</pre>
+			<p class="methods__text">Hide the countdown on the page (set "display: none" rule).</p>
+
+			<h3 class="methods__method">show</h3>
+<pre class="code">myCount.<span class="tr">show</span>();</pre>
+			<p class="methods__text">Show the countdown on the page (remove "display: none" rule).</p>
+
+			<h3 class="methods__method">onFinish</h3>
+<pre class="code">myCount.<span class="tr">onFinish</span>();</pre>
+			<p class="methods__text">Execute "onFinish" callback, specified in <a href="#onfinish">onFinish</a> parameter.</p>
+
+			<h3 class="methods__method">onTick</h3>
+<pre class="code">myCount.<span class="tr">onTick</span>();</pre>
+			<p class="methods__text">Execute "onTick" callback, specified in <a href="#ontick">onTick</a> parameter.</p>
+
+			<h3 class="methods__method">getTime</h3>
+<pre class="code"><span class="tr">var</span> time = myCount.<span class="tr">getTime</span>();
+<span class="cm">/*
+{
+    dd: "23",
+    hh: "59",
+    mm: "59",
+    ss: "30"
+}
+*/</span></pre>
+			<p class="methods__text">Get object with current time values.</p>
+
+			<h3 class="methods__method">change</h3>
+<pre class="code">myCount.<span class="tr">change</span>({
+    <span class="cm"><i>...options...</i></span>
+});</pre>
+			<p class="methods__text">Change <a href="#options">options</a> on the fly.</p>
+		</div>
+	</section>
+
+	<section id="css">
+		<div class="container">
+			<h2 class="css__head">CSS styling</h2>
+			<p class="css__text">Visual properties that are not affected by javaScript code (such as face color, font family, font color, border, etc.) are contained in a CSS file.</p>
+			<p class="css__text">See <a href="../CubicCountdown/css/CubicCountdown.css">CubicCountdown/css/CubicCountdown.css</a> file. It is well commented, feel free to change, add or remove any CSS styles and rules.</p>
+			<p class="css__text">If you need more than one countdown with different visual styles on one page, initialize countdowns with a different <a href="#cssclass">cssClass</a> parameter.</p>
+			<p class="css__text">See <a href="examples/two-countdowns.html">two-countdowns.html</a> and <a href="examples/two-countdowns.css">two-countdowns.css</a> in "Examples" folder.</p>
+		</div>
+	</section>
+
+	<script>
+		var myCount = new Cubic({
+			element: "#cubic-container",
+			toTime: Date.now(),
+			cubeSize: 100,
+			cubeSideMargin: 10,
+			labelTextSize: 14,
+			labelOnTop: false,
+			labelOffset: 12,
+			cubeTextSize: 70,
+			colonSize: 10,
+			animationDelay: 50,
+			mobileFirst: false,
+			responsive: [
+				{
+					breakpoint: 530,
+					options: {
+						cubeSize: 40,
+						cubeSideMargin: 5,
+						labelTextSize: 0,
+						labelOffset: 0,
+						cubeTextSize: 30,
+						colonSize: 0,
+					},
+				},
+			],
+		});
+	</script>
+</body>
+</html>

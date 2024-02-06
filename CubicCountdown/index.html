@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Cubic Countdown</title>
+  <!-- Link to CSS file -->
+  <link rel="stylesheet" href="css/CubicCountdown.css">
+  <!-- Link to JS file -->
+  <script src="js/CubicCountdown.js"></script>
+  <style>
+    /* Some page styles*/
+    #cubic-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100vh;
+    }
+    body {
+      background-color: #2e2e2e;
+      margin: 0;
+      padding: 0;
+    }
+
+  </style>
+</head>
+<body>
+  <!-- Empty container for countdown -->
+  <div id="cubic-container"></div>
+  <script>
+    /*Countdown initialization with ALL options*/
+    var myCount = new Cubic({
+      element: "#cubic-container",
+      toTime: Date.now() + 60 * 1000 , /*60 sec countdown since page loaded*/
+      cubeSize: 160,
+      cubeSideMargin: 20,
+      shadowIntensity: 100,
+      showDays: false,
+      showHours: true,
+      showMinutes: true,
+      showSeconds: true,
+      labelTextSize: 20,
+      labelOnTop: false,
+      labelOffset: 40,
+      cubeTextSize: 100,
+      leadingZero: true,
+      colonSize: 20,
+      animationPreset: 0,
+      animationDelay: 50,
+      continuousAnimation: true,
+      colonAnimation: true,
+      shadowColor: "#414141",
+      daysLabel: "days",
+      hoursLabel: "hours",
+      minutesLabel: "minutes",
+      secondsLabel: "seconds",
+      cssClass: "zzcubic",
+      autoStart: true,
+      onFinish: function(){
+        myCount.stop();
+        alert("onFinish callback executed");
+      },
+      onTick: function(){
+        //this.change({animationPreset: Math.floor(Math.random()*4)});
+        console.log("tick");
+      },
+      mobileFirst: false,
+      responsive: [
+        {
+          breakpoint: 1200,
+          options: {
+            cubeSize: 120,
+            cubeSideMargin: 15,
+            labelTextSize: 15,
+            labelOffset: 30,
+            cubeTextSize: 75,
+            colonSize: 13,
+          },
+        },
+        {
+          breakpoint: 768,
+          options: {
+            cubeSize: 80,
+            cubeSideMargin: 10,
+            labelTextSize: 14,
+            labelOffset: 20,
+            cubeTextSize: 50,
+            colonSize: 9,
+          },
+        },
+        {
+          breakpoint: 480,
+          options: {
+            cubeSize: 50,
+            cubeSideMargin: 5,
+            labelTextSize: 0,
+            cubeTextSize: 35,
+            colonSize: 0,
+            continiousAnimation: true,
+            animationPreset: 3,
+          },
+        },
+      ],
+    });
+  </script>
+</body>
+</html>

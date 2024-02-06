@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Responsive</title>
+	<!-- Link to CSS file -->
+	<link rel="stylesheet" href="responsive.css">
+	<!-- Link to JS file -->
+	<script src="../../CubicCountdown/js/CubicCountdown.js"></script>
+	<style>
+		/* Some page styles*/
+		body {
+			background-color: #2e2e2e;
+			margin: 0;
+			padding: 0;
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			width: 100%;
+		}
+		p {
+			font-size: 32px;
+			font-family: sans-serif;
+			color: #eee;
+		}
+	</style>
+</head>
+<body>
+	<p>Desktop first</p>
+	<!-- Container for 1st countdown -->
+	<div id="cubic-container1"></div>
+	<p>Moblie first</p>
+	<!-- Container for 2nd countdown -->
+	<div id="cubic-container2"></div>
+	
+	<script>
+		/*1st countdown initialization*/
+		var myCount1 = new Cubic({
+			element: "#cubic-container1",
+			cssClass: "zzcubic1",
+			mobileFirst: false,
+			/*viewport => 921px */
+			cubeSize: 150,
+			cubeTextSize: 100,
+			colonSize: 20,
+			cubeSideMargin: 20,
+			labelOffset: 30,
+			labelTextSize: 20,
+			responsive: [
+				/*601px <= viewport <= 920px */
+				{
+					breakpoint: 920,
+					options: {
+						cubeSize: 100,
+						cubeTextSize: 80,
+						colonSize: 15,
+						cubeSideMargin: 15,
+						labelOffset: 15,
+						labelTextSize: 15,
+					}
+				},
+				/*viewport <= 600px */
+				{
+					breakpoint: 600,
+					options: {
+						cubeSize: 60,
+						cubeTextSize: 40,
+						colonSize: 7,
+						cubeSideMargin: 7,
+						labelOffset: 0,
+						labelTextSize: 0,
+					}
+				}
+			],
+		});
+
+		/*2nd countdown initialization*/
+		var myCount2 = new Cubic({
+			element: "#cubic-container2",
+			cssClass: "zzcubic2",
+			mobileFirst: true,
+			/*viewport <= 599px */
+			cubeSize: 60,
+			cubeTextSize: 40,
+			colonSize: 7,
+			cubeSideMargin: 7,
+			labelOffset: 0,
+			labelTextSize: 0,
+			responsive: [
+				/*600px <= viewport <= 919px */
+				{
+					breakpoint: 600,
+					options: {
+						cubeSize: 100,
+						cubeTextSize: 80,
+						colonSize: 15,
+						cubeSideMargin: 15,
+						labelOffset: 15,
+						labelTextSize: 15,						
+					}
+				},
+				/*viewport => 920px */
+				{
+					breakpoint: 920,
+					options: {
+						cubeSize: 150,
+						cubeTextSize: 100,
+						colonSize: 20,
+						cubeSideMargin: 20,
+						labelOffset: 30,
+						labelTextSize: 20,
+					}
+				},
+			],
+		});
+	</script>
+</body>
+</html>
